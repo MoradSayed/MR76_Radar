@@ -914,7 +914,7 @@ class MR76Radar:
         Returns:
             True if sent successfully
         """
-        from usbcan_ii_libusb_aarch64.USBCAN_Interface import VCI_CAN_OBJ
+        from .usbcan_ii_libusb_aarch64.USBCAN_Interface import VCI_CAN_OBJ
         
         frame = VCI_CAN_OBJ()
         frame.ID = self._get_msg_id(msg_id)
@@ -1184,7 +1184,7 @@ class MR76Radar:
             This updates internal caches for radar state, objects, etc.
             Call this regularly in your main loop.
         """
-        from usbcan_ii_libusb_aarch64.USBCAN_Interface import VCI_CAN_OBJ
+        from .usbcan_ii_libusb_aarch64.USBCAN_Interface import VCI_CAN_OBJ
         
         count, frames = self.can.receive(self.device_type, self.device_index,
                                          self.can_index, 50, wait_time=timeout_ms)
@@ -1349,8 +1349,8 @@ class MR76Radar:
             angle = obj.get_angle_deg()
             
             print(f"{obj.object_id:<4} {obj.dist_long:>7.2f} {obj.dist_lat:>7.2f} "
-                  f"{obj.vrel_long:>7.2f} {obj.vrel_lat:>7.2f} "
-                  f"{range_m:>8.2f} {angle:>8.1f} {obj.object_class.name:<8}")
+                f"{obj.vrel_long:>7.2f} {obj.vrel_lat:>7.2f} "
+                f"{range_m:>8.2f} {angle:>8.1f} {obj.object_class.name:<8}")
         
         print("=" * 80)
     
@@ -2054,7 +2054,7 @@ def calculate_region_coordinates(width_m: float, depth_m: float,
 
 def example_basic_detection():
     """Example: Basic object detection"""
-    from usbcan_ii_libusb_aarch64.USBCAN_Interface import ControlCAN, VCI_USBCAN1, STATUS_OK, VCI_INIT_CONFIG
+    from .usbcan_ii_libusb_aarch64.USBCAN_Interface import ControlCAN, VCI_USBCAN1, STATUS_OK, VCI_INIT_CONFIG
     
     # Initialize CAN interface
     can = ControlCAN()
@@ -2109,7 +2109,7 @@ def example_basic_detection():
 
 def example_collision_detection():
     """Example: Collision detection with rectangular zone"""
-    from usbcan_ii_libusb_aarch64.USBCAN_Interface import ControlCAN, VCI_USBCAN1, STATUS_OK, VCI_INIT_CONFIG
+    from .usbcan_ii_libusb_aarch64.USBCAN_Interface import ControlCAN, VCI_USBCAN1, STATUS_OK, VCI_INIT_CONFIG
     import time
     
     can = ControlCAN()

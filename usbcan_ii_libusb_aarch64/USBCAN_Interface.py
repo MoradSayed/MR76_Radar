@@ -7,7 +7,7 @@ Created By: Morad Singer (Morad.S.Singer@gmail.com)
 
 from ctypes import * # type: ignore
 from typing import Optional, Union, List, Tuple
-import platform, time
+import platform, time, os
 
 # 接口卡类型定义 (Interface card type definitions)
 VCI_PCI5121 = 1
@@ -225,7 +225,7 @@ class ControlCAN:
             OSError: If the library file cannot be found or loaded.
         """
         if lib_path is None:
-            lib_path = "libusbcan.so"
+            lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "libusbcan.so")
         
         self.lib = CDLL(lib_path)
         self._setup_functions()
